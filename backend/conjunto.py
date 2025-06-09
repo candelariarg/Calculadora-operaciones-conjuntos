@@ -1,5 +1,5 @@
-numero_conjuntos = 0
-
+def menu ():
+    
 def obtener_conjuntos():
     input ("Ingrese la cantidad de conjuntos (2 o 3): ")
     while numero_conjuntos not in [2, 3]:

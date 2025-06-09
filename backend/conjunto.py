@@ -5,3 +5,4 @@ def obtener_conjuntos():
         conjunto = input(f"Ingrese el conjunto {i} (ej. 'a,b,c'): ")
         conjuntos.append([elem.strip() for elem in conjunto.split(",")])
     return conjuntos
+

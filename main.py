@@ -35,57 +35,36 @@ def main():
         print("6. Complemento de A")
         print("7. Complemento de B")
         print("8. Salir")
+
         opcion = input("Elija una operación (1/2/3/4/5/6/7/8): ")
-
-        if opcion == "1":
-            resultado = set1.union(set2)
-            if not resultado:
-                print("Resultado: conjunto vacío.")
-            else:
-                print("Unión:", resultado)
-        elif opcion == "2":
-            resultado = set1.intersection(set2)
-            if not resultado:
-                print("No hay intersección (conjunto vacío).")
-            else:
-                print("Intersección:", resultado)
-        elif opcion == "3":
-            resultado = set1.difference(set2)
-            if not resultado:
-                print("Resultado: conjunto vacío.")
-            else:
-                print("Diferencia (A - B):", resultado)
-        elif opcion == "4":
-            resultado = set2.difference(set1)
-            if not resultado:
-                print("Resultado: conjunto vacío.")
-            else:
-                print("Diferencia (B - A):", resultado)
-        elif opcion == "5":
-            resultado = set1.symmetric_difference(set2)
-            if not resultado:
-                print("Resultado: conjunto vacío.")
-            else:
-                print("Diferencia simétrica (A Δ B):", resultado)
-        elif opcion == "6":
-            universo = obtener_universo()
-            resultado = universo.difference(set1)
-            if not resultado:
-                print("El complemento de A es el conjunto vacío.")
-            else:
-                print("Complemento de A:", resultado)
-        elif opcion == "7":
-            universo = obtener_universo()
-            resultado = universo.difference(set2)
-            if not resultado:
-                print("El complemento de B es el conjunto vacío.")
-            else:
-                print("Complemento de B:", resultado)
-        elif opcion == "8":
-            print("¡Hasta luego!")
-            break
-        else:
-            print("Opción no válida. Intente de nuevo.")
-
+        match opcion:
+            case "1":
+                resultado = set1.union(set2)
+                print("Unión:" if resultado else "Resultado: conjunto vacío.", resultado if resultado else "")
+            case "2":
+                resultado = set1.intersection(set2)
+                print("Intersección:" if resultado else "No hay intersección (conjunto vacío).", resultado if resultado else "")
+            case "3":
+                resultado = set1.difference(set2)
+                print("Diferencia (A - B):" if resultado else "Resultado: conjunto vacío.", resultado if resultado else "")
+            case "4":
+                resultado = set2.difference(set1)
+                print("Diferencia (B - A):" if resultado else "Resultado: conjunto vacío.", resultado if resultado else "")
+            case "5":
+                resultado = set1.symmetric_difference(set2)
+                print("Diferencia simétrica (A Δ B):" if resultado else "Resultado: conjunto vacío.", resultado if resultado else "")
+            case "6":
+                universo = obtener_universo()
+                resultado = universo.difference(set1)
+                print("Complemento de A:" if resultado else "El complemento de A es el conjunto vacío.", resultado if resultado else "")
+            case "7":
+                universo = obtener_universo()
+                resultado = universo.difference(set2)
+                print("Complemento de B:" if resultado else "El complemento de B es el conjunto vacío.", resultado if resultado else "")
+            case "8":
+                print("¡Hasta luego!")
+                break
+            case _:
+                print("Opción no válida. Intente de nuevo.")           
 if __name__ == "__main__":
     main()

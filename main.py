@@ -1,4 +1,7 @@
 from backend.conjunto import obtener_conjuntos
+import string
+from matplotlib_venn import venn2
+import matplotlib.pyplot as plt
 
 def obtener_universo():
     print("\nDefina el conjunto universal.")
@@ -21,6 +24,21 @@ def obtener_universo():
         print("Opción inválida. Usando universo por defecto.")
         return set(str(i) for i in range(11))
 
+def mostrar_venn(set1, set2, operacion):
+    plt.figure(figsize=(6,6))
+    v = venn2([set1, set2], set_labels=('A', 'B'))
+    if operacion == "1":
+        plt.title("Unión de A y B")
+    elif operacion == "2":
+        plt.title("Intersección de A y B")
+    elif operacion == "3":
+        plt.title("Diferencia (A - B)")
+    elif operacion == "4":
+        plt.title("Diferencia (B - A)")
+    elif operacion == "5":
+        plt.title("Diferencia simétrica (A Δ B)")
+    plt.show()
+
 def main():
     conjuntos = obtener_conjuntos()
     set1 = set(conjuntos[0])
@@ -41,9 +59,10 @@ def main():
         print("5. Diferencia simétrica (A Δ B)")
         print("6. Complemento de A")
         print("7. Complemento de B")
-        print("8. Salir")
+        print("8. Mostrar diagrama de Venn")
+        print("9. Salir")
 
-        opcion = input("Elija una operación (1/2/3/4/5/6/7/8): ")
+        opcion = input("Elija una operación (1/2/3/4/5/6/7/8/9): ")
         match opcion:
             case "1":
                 resultado = set1.union(set2)
@@ -69,6 +88,14 @@ def main():
                 resultado = universo.difference(set2)
                 print("Complemento de B:" if resultado else "El complemento de B es el conjunto vacío.", resultado if resultado else "")
             case "8":
+                print("¿Qué operación desea visualizar en el diagrama de Venn?")
+                print("1. Unión\n2. Intersección\n3. Diferencia (A - B)\n4. Diferencia (B - A)\n5. Diferencia simétrica (A Δ B)")
+                op = input("Elija (1/2/3/4/5): ")
+                if op in {"1", "2", "3", "4", "5"}:
+                    mostrar_venn(set1, set2, op)
+                else:
+                    print("Opción inválida.")
+            case "9":
                 print("¡Hasta luego!")
                 break
             case _:

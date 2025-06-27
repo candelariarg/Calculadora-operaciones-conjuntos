@@ -2,17 +2,24 @@ from backend.conjunto import obtener_conjuntos
 
 def obtener_universo():
     print("\nDefina el conjunto universal.")
-    print("Presione Enter para usar el universo por defecto: {0,1,2,3,4,5,6,7,8,9,10}")
-    print("O ingrese una expresión como: 0,1,2,3,4,5,6,7,8,9,10")
-    expr = input("Universo: ").strip()
-    if expr == "":
+    print("1. Usar universo por defecto: {0,1,2,3,4,5,6,7,8,9,10}")
+    print("2. Usar universo de letras: {A,B,C,...,Z}")
+    print("3. Ingresar universo personalizado (ejemplo: 0,1,2,3,4,5,6,7,8,9,10)")
+    opcion = input("Elija una opción (1/2/3): ").strip()
+    if opcion == "1":
         return set(str(i) for i in range(11))
-    else:
+    elif opcion == "2":
+        return set(string.ascii_uppercase)
+    elif opcion == "3":
+        expr = input("Ingrese los elementos separados por coma: ").strip()
         elementos = [e.strip() for e in expr.split(",") if e.strip() != ""]
         if not elementos:
             print("Expresión inválida. Usando universo por defecto.")
             return set(str(i) for i in range(11))
         return set(elementos)
+    else:
+        print("Opción inválida. Usando universo por defecto.")
+        return set(str(i) for i in range(11))
 
 def main():
     conjuntos = obtener_conjuntos()

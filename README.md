@@ -1,0 +1,1 @@
+Este repositorio contiene un proyecto para la materia Matemática Discreta del primer cuatrimestre de la carrera. Este proyecto se trató de la creación de una calculadora que resuelve operaciones de conjuntos.   
